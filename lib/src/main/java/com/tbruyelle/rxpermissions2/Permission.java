@@ -1,6 +1,7 @@
 package com.tbruyelle.rxpermissions2;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.BiConsumer;
@@ -11,6 +12,7 @@ public class Permission {
     public final String name;
     public final boolean granted;
     public final boolean shouldShowRequestPermissionRationale;
+    public final List<Permission> permissionList;
 
     public Permission(String name, boolean granted) {
         this(name, granted, false);
@@ -20,12 +22,14 @@ public class Permission {
         this.name = name;
         this.granted = granted;
         this.shouldShowRequestPermissionRationale = shouldShowRequestPermissionRationale;
+        this.permissionList = new ArrayList<>();
     }
 
     public Permission(List<Permission> permissions) {
         name = combineName(permissions);
         granted = combineGranted(permissions);
         shouldShowRequestPermissionRationale = combineShouldShowRequestPermissionRationale(permissions);
+        this.permissionList = permissions;
     }
 
     @Override

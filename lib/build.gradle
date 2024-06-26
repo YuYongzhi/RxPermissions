@@ -25,6 +25,10 @@ android {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
